@@ -5,3 +5,7 @@
   background: #eba31d;
   border-radius: 5px;
 }
+
+.active {
+  background: steelblue;
+}
