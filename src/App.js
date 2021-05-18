@@ -10,17 +10,24 @@ function App() {
   return (
     <div className="App">
       <PlayerForm onSubmit={createPlayer} />
-      {players.map((player, index) => (
-        <Player
-          onMinus={() => updateScore(index, -1)}
-          onPlus={() => updateScore(index, +1)}
-          key={player.name}
-          name={player.name}
-          score={player.score}
-        />
-      ))}
-      <Button onClick={resetScores}>Reset scores</Button>
-      <Button onClick={resetAll}>Reset all</Button>
+
+      <ul className="App__Player-List">
+        {players.map((player, index) => (
+          <li>
+            <Player
+              onMinus={() => updateScore(index, -1)}
+              onPlus={() => updateScore(index, +1)}
+              key={player.name}
+              name={player.name}
+              score={player.score}
+            />
+          </li>
+        ))}
+      </ul>
+      <div className="App__buttons">
+        <Button onClick={resetScores}>Reset scores</Button>
+        <Button onClick={resetAll}>Reset all</Button>
+      </div>
     </div>
   )
   function createPlayer(name) {
