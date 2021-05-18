@@ -1,0 +1,20 @@
+.Player {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 300px;
+}
+
+.Player > div {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: center;
+  text-align: center;
+}
+
+.Player > p {
+  text-align: center;
+  text-transform: capitalize;
+  font-size: 16px;
+  color: steelblue;
+  font-family: sans-serif;
+}
