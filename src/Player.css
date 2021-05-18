@@ -13,4 +13,8 @@
 
 .Player > p {
   text-align: center;
+  text-transform: capitalize;
+  font-size: 16px;
+  color: steelblue;
+  font-family: sans-serif;
 }

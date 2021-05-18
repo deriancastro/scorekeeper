@@ -10,6 +10,12 @@ const Template = args => <Player {...args} />
 
 export const DefaultPlayer = Template.bind({})
 DefaultPlayer.args = {
-  name: 'Derian',
+  name: 'peter pan',
   score: 0,
+}
+
+export const SecondPlayer = Template.bind({})
+SecondPlayer.args = {
+  name: 'marie moon',
+  score: 20,
 }

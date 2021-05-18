@@ -1,3 +1,10 @@
 .App {
-  text-align: center;
+  display: grid;
+  gap: 20px;
+  width: 310px;
+  margin: 20px auto;
+  border: 5px solid steelblue;
+  padding: 20px;
+  height: 85vh;
+  background: papayawhip;
 }
