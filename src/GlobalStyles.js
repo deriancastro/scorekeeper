@@ -1,3 +1,6 @@
+import { createGlobalStyle } from 'styled-components'
+
+const GlobalStyles = createGlobalStyle`
 * {
   box-sizing: border-box;
 }
@@ -13,3 +16,5 @@ button,
 textarea {
   font-size: inherit;
 }
+`
+export default GlobalStyles

@@ -1,6 +1,6 @@
-import './App.css'
 import Player from './Player'
 import Button from './Button'
+import styled from 'styled-components'
 import PlayerForm from './PlayerForm'
 import { useState } from 'react'
 
@@ -8,10 +8,10 @@ function App() {
   const [players, setPlayers] = useState([])
 
   return (
-    <div className="App">
+    <AppBody>
       <PlayerForm onSubmit={createPlayer} />
 
-      <ul className="App__Player-List">
+      <ul>
         {players.map((player, index) => (
           <li>
             <Player
@@ -25,10 +25,12 @@ function App() {
         ))}
       </ul>
       <div className="App__buttons">
-        <Button onClick={resetScores}>Reset scores</Button>
+        <Button color="white" isActive onClick={resetScores}>
+          Reset scores
+        </Button>
         <Button onClick={resetAll}>Reset all</Button>
       </div>
-    </div>
+    </AppBody>
   )
   function createPlayer(name) {
     setPlayers([...players, { name, score: 0 }])
@@ -50,3 +52,24 @@ function App() {
 }
 
 export default App
+
+const AppBody = styled.div`
+  display: grid;
+  gap: 10px;
+  grid-template-rows: min-content auto min-content;
+  padding: 20px;
+  height: 100vh;
+  background: papayawhip;
+
+  ul {
+    display: grid;
+    align-content: start;
+    list-style: none;
+    padding: 0;
+  }
+
+  div {
+    display: grid;
+    gap: 12px;
+  }
+`

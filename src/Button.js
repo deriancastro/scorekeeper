@@ -1,5 +1,8 @@
+import styled from 'styled-components/macro'
+/*
 import './Button.css'
 import PropTypes from 'prop-types'
+
 
 Button.propTypes = {
   isActive: PropTypes.bool,
@@ -13,4 +16,17 @@ export default function Button({ onClick, children, isActive }) {
       {children}
     </button>
   )
-}
+}*/
+
+const Button = styled.button`
+  padding: 12px;
+  border: none;
+  background: ${props => (props.isActive ? 'steelblue' : 'rgb(105, 190, 240)')};
+  color: ${props => props.color};
+  border-radius: 8px;
+
+  :hover {
+    background: hotpink;
+  }
+`
+export default Button
