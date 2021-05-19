@@ -1,19 +1,15 @@
 .App {
   display: grid;
-  gap: 20px;
-  grid-template-rows: 60px auto 80px;
-  width: 310px;
-  margin: 20px auto;
-  border: 5px solid steelblue;
+  gap: 10px;
+  grid-template-rows: min-content auto min-content;
   padding: 20px;
-  height: 85vh;
+  height: 100vh;
   background: papayawhip;
 }
 
 .App__Player-List {
   display: grid;
   align-content: start;
-  gap: 10px;
   list-style: none;
   padding: 0;
 }
