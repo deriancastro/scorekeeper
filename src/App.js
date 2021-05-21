@@ -1,48 +1,64 @@
-import Player from './Player'
-import Button from './Button'
-import styled from 'styled-components'
-import PlayerForm from './PlayerForm'
 import { useState } from 'react'
+import styled from 'styled-components/macro'
+import Navigation from './components/Navigation'
+import CreatePage from './pages/CreatePage'
+import GamePage from './pages/GamePage'
+import HistoryPage from './pages/HistoryPage'
 
-function App() {
+export default function App() {
+  const [currentPageId, setCurrentPageId] = useState('create')
+  const [history, setHistory] = useState([])
   const [players, setPlayers] = useState([])
+  const [nameOfGame, setNameOfGame] = useState('')
 
   return (
-    <AppBody>
-      <PlayerForm onSubmit={createPlayer} />
-
-      <ul>
-        {players.map((player, index) => (
-          <li>
-            <Player
-              onMinus={() => updateScore(index, -1)}
-              onPlus={() => updateScore(index, +1)}
-              key={player.name}
-              name={player.name}
-              score={player.score}
-            />
-          </li>
-        ))}
-      </ul>
-      <div className="App__buttons">
-        <Button color="white" isActive onClick={resetScores}>
-          Reset scores
-        </Button>
-        <Button onClick={resetAll}>Reset all</Button>
-      </div>
-    </AppBody>
+    <AppGrid>
+      {currentPageId === 'create' && (
+        <CreatePage onNavigate={setCurrentPageId} onSubmit={handleSubmit} />
+      )}
+      {currentPageId === 'game' && (
+        <GamePage
+          onResetScores={resetScores}
+          onEndGame={handleEndGame}
+          onPlayerUpdate={updateScore}
+          nameOfGame={nameOfGame}
+          players={players}
+        />
+      )}
+      {currentPageId === 'history' && (
+        <HistoryPage games={history} onNavigate={setCurrentPageId} />
+      )}
+      {currentPageId !== 'game' && (
+        <Navigation
+          currentPageId={currentPageId}
+          onNavigate={setCurrentPageId}
+          pages={[
+            { title: 'Create', id: 'create' },
+            { title: 'History', id: 'history' },
+          ]}
+        />
+      )}
+    </AppGrid>
   )
-  function createPlayer(name) {
-    setPlayers([...players, { name, score: 0 }])
+
+  function handleEndGame() {
+    setCurrentPageId('history')
+    setHistory([{ players, nameOfGame }, ...history])
   }
+
+  function handleSubmit({ players, nameOfGame }) {
+    setPlayers(players)
+    setNameOfGame(nameOfGame)
+    setCurrentPageId('game')
+  }
+
   function resetScores() {
     setPlayers(players.map(player => ({ ...player, score: 0 })))
   }
-  function resetAll() {
-    setPlayers([])
-  }
+
   function updateScore(index, value) {
     const playerToUpdate = players[index]
+
     setPlayers([
       ...players.slice(0, index),
       { ...playerToUpdate, score: playerToUpdate.score + value },
@@ -51,25 +67,10 @@ function App() {
   }
 }
 
-export default App
-
-const AppBody = styled.div`
+const AppGrid = styled.div`
   display: grid;
-  gap: 10px;
-  grid-template-rows: min-content auto min-content;
-  padding: 20px;
+  grid-template-rows: auto min-content;
   height: 100vh;
-  background: papayawhip;
-
-  ul {
-    display: grid;
-    align-content: start;
-    list-style: none;
-    padding: 0;
-  }
-
-  div {
-    display: grid;
-    gap: 12px;
-  }
+  padding: 12px;
+  gap: 20px;
 `
