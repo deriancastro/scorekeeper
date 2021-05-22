@@ -24,7 +24,7 @@ const ButtonStyled = styled.button`
 
 Button.propTypes = {
   isActive: PropTypes.bool,
-  onClick: PropTypes.func.isRequired,
+  onClick: PropTypes.func,
   children: PropTypes.node,
 }
 

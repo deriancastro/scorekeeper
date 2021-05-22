@@ -18,7 +18,7 @@ export default function Navigation({ onNavigate, pages, currentPageId }) {
           isActive={currentPageId === id}
           onClick={() => onNavigate(id)}
         >
-          {title}
+          {title.slice(0, 1).toUpperCase() + title.slice(1)}
         </NavButton>
       ))}
     </Nav>
@@ -26,7 +26,7 @@ export default function Navigation({ onNavigate, pages, currentPageId }) {
 }
 
 const Nav = styled.nav`
-  display: flex;
+  text-decoration: none;
 `
 
 const NavButton = styled(Button)`

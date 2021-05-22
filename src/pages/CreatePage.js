@@ -2,12 +2,15 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components/macro'
 import Button from '../components/Button'
 import LabeledInput from '../components/LabeledInput'
+import { useHistory } from 'react-router-dom'
 
 CreatePage.propTypes = {
   onSubmit: PropTypes.func.isRequired,
+  path: PropTypes.string,
 }
 
 export default function CreatePage({ onSubmit }) {
+  let gamePath = useHistory()
   return (
     <Grid>
       <Form onSubmit={handleSubmit}>
@@ -41,7 +44,9 @@ export default function CreatePage({ onSubmit }) {
       players,
     }
 
-    onSubmit(game)
+    const path = gamePath.push('/game')
+
+    onSubmit(game, path)
   }
 }
 

@@ -3,6 +3,7 @@ import styled from 'styled-components/macro'
 import Header from '../components/Header'
 import Player from '../components/Player'
 import Button from '../components/Button'
+import { useHistory } from 'react-router-dom'
 
 GamePage.propTypes = {
   nameOfGame: PropTypes.string,
@@ -12,15 +13,17 @@ GamePage.propTypes = {
   onResetScores: PropTypes.func.isRequired,
   onEndGame: PropTypes.func.isRequired,
   onPlayerUpdate: PropTypes.func.isRequired,
+  path: PropTypes.string,
 }
 
 export default function GamePage({
   nameOfGame,
   players,
   onResetScores,
-  onEndGame,
+  onClick,
   onPlayerUpdate,
 }) {
+  let gamePath = useHistory()
   return (
     <Grid>
       <Header>{nameOfGame}</Header>
@@ -34,9 +37,13 @@ export default function GamePage({
         />
       ))}
       <Button onClick={onResetScores}>Reset scores</Button>
-      <Button onClick={onEndGame}>End game</Button>
+      <Button onClick={handleEndGame}>End game</Button>
     </Grid>
   )
+  function handleEndGame() {
+    const path = gamePath.push('/history')
+    onClick(path)
+  }
 }
 
 const Grid = styled.section`
