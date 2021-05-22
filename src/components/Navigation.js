@@ -17,6 +17,7 @@ export default function Navigation({ onNavigate, pages, currentPageId }) {
           key={id}
           isActive={currentPageId === id}
           onClick={() => onNavigate(id)}
+          color="white"
         >
           {title.slice(0, 1).toUpperCase() + title.slice(1)}
         </NavButton>

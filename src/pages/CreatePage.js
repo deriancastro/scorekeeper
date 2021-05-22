@@ -21,10 +21,10 @@ export default function CreatePage({ onSubmit }) {
         />
         <LabeledInput
           label="Player names:"
-          name="players"
+          name="players1"
           placeholder="e.g. Jane, John"
         />
-        <Button>Create game</Button>
+        <Button color="white">Create game</Button>
       </Form>
     </Grid>
   )
@@ -33,20 +33,29 @@ export default function CreatePage({ onSubmit }) {
     event.preventDefault()
     const form = event.target
     const nameInput = form.elements.name
-    const playersInput = form.elements.players
+    const playersInput = form.elements.players1
     const nameOfGame = nameInput.value
-    const players = playersInput.value
+    const players1 = playersInput.value
       .split(',')
       .map(name => ({ name: name.trim(), score: 0 }))
 
-    const game = {
-      nameOfGame,
-      players,
+    const players2 = players1.filter(player => player.name !== '')
+    const players = getUniquelistBy(players2, 'name')
+    console.log(players)
+    if (players.length >= 2) {
+      const game = {
+        nameOfGame,
+        players,
+      }
+      const path = gamePath.push('/game')
+      onSubmit(game, path)
+    } else {
+      window.alert('Sorry... but there must be a minimum of two players 😉')
     }
 
-    const path = gamePath.push('/game')
-
-    onSubmit(game, path)
+    function getUniquelistBy(arr, key) {
+      return [...new Map(arr.map(item => [item[key], item])).values()]
+    }
   }
 }
 

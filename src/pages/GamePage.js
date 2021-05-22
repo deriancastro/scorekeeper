@@ -36,8 +36,12 @@ export default function GamePage({
           score={score}
         />
       ))}
-      <Button onClick={onResetScores}>Reset scores</Button>
-      <Button onClick={handleEndGame}>End game</Button>
+      <Button onClick={onResetScores} color="red">
+        Reset scores
+      </Button>
+      <Button onClick={handleEndGame} color="white">
+        End game
+      </Button>
     </Grid>
   )
   function handleEndGame() {
