@@ -11,7 +11,7 @@ export default function App() {
   const [history, setHistory] = useState([])
   const [players, setPlayers] = useState([])
   const [nameOfGame, setNameOfGame] = useState('')
-  console.log(currentPageId)
+
   const navButtons = ['create', 'history']
 
   return (
@@ -29,7 +29,7 @@ export default function App() {
             <Route path="/game">
               <GamePage
                 onResetScores={resetScores}
-                onClick={handleEndGame}
+                handleEndGame={handleEndGame}
                 onPlayerUpdate={updateScore}
                 nameOfGame={nameOfGame}
                 players={players}
@@ -59,7 +59,7 @@ export default function App() {
     </Router>
   )
 
-  function handleEndGame(gamePath) {
+  function handleEndGame() {
     setCurrentPageId('history')
     setHistory([{ players, nameOfGame }, ...history])
   }

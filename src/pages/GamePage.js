@@ -11,19 +11,18 @@ GamePage.propTypes = {
     PropTypes.shape({ name: PropTypes.string, score: PropTypes.number })
   ),
   onResetScores: PropTypes.func.isRequired,
-  onEndGame: PropTypes.func.isRequired,
   onPlayerUpdate: PropTypes.func.isRequired,
-  path: PropTypes.string,
+  handleEndGame: PropTypes.func.isRequired,
 }
 
 export default function GamePage({
   nameOfGame,
   players,
   onResetScores,
-  onClick,
+  handleEndGame,
   onPlayerUpdate,
 }) {
-  let gamePath = useHistory()
+  let path = useHistory()
   return (
     <Grid>
       <Header>{nameOfGame}</Header>
@@ -39,14 +38,14 @@ export default function GamePage({
       <Button onClick={onResetScores} color="red">
         Reset scores
       </Button>
-      <Button onClick={handleEndGame} color="white">
+      <Button onClick={handleClick} color="white">
         End game
       </Button>
     </Grid>
   )
-  function handleEndGame() {
-    const path = gamePath.push('/history')
-    onClick(path)
+  function handleClick(event) {
+    handleEndGame(event)
+    path.push('/history')
   }
 }
 

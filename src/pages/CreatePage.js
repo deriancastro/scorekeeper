@@ -6,14 +6,13 @@ import { useHistory } from 'react-router-dom'
 
 CreatePage.propTypes = {
   onSubmit: PropTypes.func.isRequired,
-  path: PropTypes.string,
 }
 
 export default function CreatePage({ onSubmit }) {
-  let gamePath = useHistory()
+  let path = useHistory()
   return (
     <Grid>
-      <Form onSubmit={handleSubmit}>
+      <Form onSubmit={handleSubmit} aria-label="create a game" role="form">
         <LabeledInput
           label="Name of game:"
           name="name"
@@ -41,17 +40,19 @@ export default function CreatePage({ onSubmit }) {
 
     const players2 = players1.filter(player => player.name !== '')
     const players = getUniquelistBy(players2, 'name')
-    console.log(players)
+
     if (players.length >= 2) {
       const game = {
         nameOfGame,
         players,
       }
-      const path = gamePath.push('/game')
-      onSubmit(game, path)
-    } else {
-      window.alert('Sorry... but there must be a minimum of two players 😉')
-    }
+      path.push('/game')
+      onSubmit(game)
+    } /*else {
+      window.alert(
+        'Sorry... but there must be a minimum of two players and their names must be different 😉'
+      )
+    }*/
 
     function getUniquelistBy(arr, key) {
       return [...new Map(arr.map(item => [item[key], item])).values()]
