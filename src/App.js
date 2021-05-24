@@ -5,10 +5,11 @@ import CreatePage from './pages/CreatePage'
 import GamePage from './pages/GamePage'
 import HistoryPage from './pages/HistoryPage'
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
+import useLocalStorage from './useLocalStorage'
 
 export default function App() {
   const [currentPageId, setCurrentPageId] = useState('create')
-  const [history, setHistory] = useState([])
+  const [history, setHistory] = useLocalStorage('history', [])
   const [players, setPlayers] = useState([])
   const [nameOfGame, setNameOfGame] = useState('')
 
