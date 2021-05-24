@@ -17,19 +17,23 @@ export default function Player({ name, score, onMinus, onPlus }) {
         <Button isActive onClick={onMinus}>
           -
         </Button>
-        <p>{score}</p>
+        <Score isNegative={isNegative(score)}>{score}</Score>
         <Button isActive onClick={onPlus}>
           +
         </Button>
       </div>
     </Wrapper>
   )
+  function isNegative(score) {
+    if (score < 0) {
+      return true
+    }
+  }
 }
 
 const Wrapper = styled.section`
   display: grid;
   grid-template-columns: 1fr 1fr;
-  width: 300px;
 
   div {
     display: grid;
@@ -39,10 +43,12 @@ const Wrapper = styled.section`
   }
 
   p {
-    text-align: center;
     text-transform: capitalize;
-    font-size: 16px;
-    color: steelblue;
-    font-family: sans-serif;
   }
+`
+const Score = styled.span`
+  text-align: center;
+  font-size: 16px;
+  color: ${props => (props.isNegative ? 'red' : 'steelblue')};
+  font-family: sans-serif;
 `

@@ -21,6 +21,7 @@ export default function HistoryPage({ games }) {
           <HistoryEntry
             key={index}
             nameOfGame={game.nameOfGame}
+            timeStamp={game.timeStamp}
             players={game.players}
           />
         ))}

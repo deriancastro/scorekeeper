@@ -11,7 +11,6 @@ export default function App() {
   const [history, setHistory] = useState([])
   const [players, setPlayers] = useState([])
   const [nameOfGame, setNameOfGame] = useState('')
-
   const navButtons = ['create', 'history']
 
   return (
@@ -61,7 +60,12 @@ export default function App() {
 
   function handleEndGame() {
     setCurrentPageId('history')
-    setHistory([{ players, nameOfGame }, ...history])
+    const timeStamp = new Date().toLocaleDateString('de-DE', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    })
+    setHistory([{ players, nameOfGame, timeStamp }, ...history])
   }
 
   function handleSubmit({ players, nameOfGame }) {
