@@ -8,6 +8,7 @@ const HeaderStyled = styled.h2`
   margin: 0;
   font-size: 1.2;
   font-weight: 500;
+  text-transform: capitalize;
 `
 Header.propTypes = {
   children: PropTypes.node,

@@ -23,6 +23,7 @@ export default function GamePage({
   onPlayerUpdate,
 }) {
   let path = useHistory()
+
   return (
     <Grid>
       <Header>{nameOfGame}</Header>

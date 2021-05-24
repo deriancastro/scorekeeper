@@ -1,14 +1,5 @@
 import styled from 'styled-components/macro'
 import PropTypes from 'prop-types'
-/*
-import './Button.css'
-export default function Button({ onClick, children, isActive }) {
-  return (
-    <button className={isActive ? 'Button active' : 'Button'} onClick={onClick}>
-      {children}
-    </button>
-  )
-}*/
 
 const ButtonStyled = styled.button`
   padding: 12px;
