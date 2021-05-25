@@ -1,18 +1,32 @@
 import styled from 'styled-components/macro'
 import PropTypes from 'prop-types'
 import Button from './Button'
+import { NavLink } from 'react-router-dom'
 
 Navigation.propTypes = {
-  onNavigate: PropTypes.func.isRequired,
   pages: PropTypes.arrayOf(
-    PropTypes.shape({ title: PropTypes.string, id: PropTypes.string })
+    PropTypes.shape({ title: PropTypes.string, path: PropTypes.string })
   ),
-  currentPageId: PropTypes.string,
 }
-export default function Navigation({ onNavigate, pages, currentPageId }) {
+
+export default function Navigation({ pages }) {
   return (
     <Nav>
-      {pages.map(({ title, id }) => (
+      {pages.map(({ name, path, disabled }) => (
+        <NavButton
+          exact
+          component={NavLink}
+          key={name}
+          to={path}
+          disabled={disabled}
+          color="white"
+        >
+          {name}
+        </NavButton>
+      ))}
+    </Nav>
+    /* 
+      {pages.map(({ title, path }) => (
         <NavButton
           key={id}
           isActive={currentPageId === id}
@@ -22,12 +36,13 @@ export default function Navigation({ onNavigate, pages, currentPageId }) {
           {title.slice(0, 1).toUpperCase() + title.slice(1)}
         </NavButton>
       ))}
-    </Nav>
+    */
   )
 }
 
 const Nav = styled.nav`
-  text-decoration: none;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 `
 
 const NavButton = styled(Button)`
