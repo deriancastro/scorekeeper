@@ -62,6 +62,12 @@ describe('CreatePage', () => {
     const button = screen.getByRole('button', { name: 'Create game' })
     userEvent.click(button)
 
-    expect(testHandleSubmit).toHaveBeenCalled()
+    expect(testHandleSubmit).toHaveBeenCalledWith({
+      nameOfGame: 'MicroMacro',
+      players: [
+        { name: 'pepe', score: 0 },
+        { name: 'julia', score: 0 },
+      ],
+    })
   })
 })

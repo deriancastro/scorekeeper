@@ -13,7 +13,7 @@ export default function HistoryEntry({ nameOfGame, players, timeStamp }) {
     <Grid>
       <div>
         <Title>{nameOfGame}</Title>
-        <date>{timeStamp}</date>
+        <Date>{timeStamp}</Date>
       </div>
       <ul>
         {players.map(player => (
@@ -61,4 +61,7 @@ const Score = styled.span`
   font-size: 16px;
   color: ${props => (props.isNegative ? 'red' : 'steelblue')};
   font-family: sans-serif;
+`
+const Date = styled.span`
+  text-align: left;
 `
