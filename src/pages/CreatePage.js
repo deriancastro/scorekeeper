@@ -48,11 +48,11 @@ export default function CreatePage({ onSubmit }) {
       }
       path.push('/game')
       onSubmit(game)
-    } /*else {
+    } else {
       window.alert(
         'Sorry... but there must be a minimum of two players and their names must be different 😉'
       )
-    }*/
+    }
 
     function getUniquelistBy(arr, key) {
       return [...new Map(arr.map(item => [item[key], item])).values()]

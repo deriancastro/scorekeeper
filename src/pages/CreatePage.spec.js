@@ -11,6 +11,7 @@ describe('CreatePage', () => {
       </MemoryRouter>
     )
 
+    jest.spyOn(window, 'alert').mockImplementation(() => {})
     const inputs = screen.getAllByRole('textbox')
     expect(inputs).toHaveLength(2)
 
@@ -34,7 +35,7 @@ describe('CreatePage', () => {
       screen.getByRole('textbox', { name: 'Player names:' }),
       'Jonas, Maria'
     )
-
+    jest.spyOn(window, 'alert').mockImplementation(() => {})
     const form = screen.getByRole('form')
     fireEvent.submit(form)
 
@@ -57,7 +58,7 @@ describe('CreatePage', () => {
       screen.getByRole('textbox', { name: 'Player names:' }),
       'pepe, julia'
     )
-
+    jest.spyOn(window, 'alert').mockImplementation(() => {})
     const button = screen.getByRole('button', { name: 'Create game' })
     userEvent.click(button)
 
