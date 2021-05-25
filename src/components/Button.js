@@ -1,26 +1,35 @@
-import styled from 'styled-components/macro'
 import PropTypes from 'prop-types'
-
-const ButtonStyled = styled.button`
-  padding: 12px;
-  border: none;
-  background: ${props => (props.isActive ? 'steelblue' : 'rgb(105, 190, 240)')};
-  color: ${props => props.color};
-  border-radius: 8px;
-
-  //:hover {
-  //background: hotpink;
-  //}
-`
+import * as React from 'react'
+import styled from 'styled-components/macro'
 
 Button.propTypes = {
   isActive: PropTypes.bool,
   onClick: PropTypes.func,
   children: PropTypes.node,
+  component: PropTypes.any,
+  disabled: PropTypes.bool,
 }
 
-function Button(props) {
-  return <ButtonStyled {...props} />
+export default function Button({
+  component: Component = 'button',
+  ...otherProps
+}) {
+  return <ButtonStyled as={Component} {...otherProps} />
 }
 
-export default Button
+const ButtonStyled = styled.button`
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  text-decoration: none;
+  color: inherit;
+  text-align: center;
+  background: ${p => (p.isActive ? 'steelblue' : '#ddd')};
+  &.active {
+    background: steelblue;
+  }
+  &[disabled] {
+    opacity: 0.6;
+    pointer-events: none;
+  }
+`
