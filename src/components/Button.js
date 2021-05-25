@@ -22,9 +22,9 @@ const ButtonStyled = styled.button`
   border: none;
   border-radius: 8px;
   text-decoration: none;
-  color: inherit;
+  color: ${props => props.color};
   text-align: center;
-  background: ${p => (p.isActive ? 'steelblue' : '#ddd')};
+  background: ${p => (p.isActive ? 'steelblue' : 'grey')};
   &.active {
     background: steelblue;
   }

@@ -19,6 +19,7 @@ export default function Navigation({ pages }) {
           key={name}
           to={path}
           disabled={disabled}
+          color="white"
         >
           {name}
         </NavButton>
